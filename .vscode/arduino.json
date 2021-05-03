@@ -1,0 +1,7 @@
+{
+    "configuration": "cpu=atmega328old",
+    "board": "arduino:avr:nano",
+    "port": "COM13",
+    "programmer": "arduino:arduinoisp",
+    "sketch": "Arduino Code\\just_Vmessung_5V\\Vmessung_5V.ino"
+}

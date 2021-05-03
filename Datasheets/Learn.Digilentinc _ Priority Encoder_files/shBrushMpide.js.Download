@@ -1,0 +1,136 @@
+/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ * 
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+;(function()
+  {
+      // CommonJS
+      typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
+      
+      function Brush()
+      {
+	  
+	  var mp_literal1 = 'DEC BIN HEX OCT BYTE CHANGE CORE_TICK_RATE DEFAULT DEG_TO_RAD DISPLAY ' +
+	      'ENTER_BOOTLOADER_ON_BOOT EXTERNAL EXTMINUS EXTPLUSMINUS FALLING HALF_PI HIGH ' +
+	      'INPUT INPUT_PULLUP INPUT_PULLDOWN INPUT_PULLUPDOWN INTERNAL INTERNAL1V1 ' +
+	      'INTERNAL2V56 LOW LSBFIRST MSBFIRST NUM_TASKS OUTPUT OPEN PI RAD_TO_DEG RISING ' +
+	      'RUN_SKETCH_ON_BOOT SERIAL TASK_ENABLE TASK_DISABLE TASK_RUN_ONCE TOGGLES_PER_SEC ' +
+	      'TWO_PI NOT_A_PIN NOT_A_PORT NOT_ON_TIMER NOT_ANALOG_PIN NOT_PPS_PIN NOT_CN_PIN ' +
+	      'NUM_DIGITAL_PINS_EXTENDED _BN_TIMER_OC _BN_TIMER_IC _BN_TIMER_TCK _BOARD_AN0 ' +
+	      '_BOARD_AN1 _BOARD_AN2 _BOARD_AN3 _BOARD_AN4 _BOARD_AN5 _BOARD_AN6 _BOARD_AN7 ' +
+	      '_BOARD_AN8 _BOARD_AN9 _BOARD_AN10 _BOARD_AN11 _BOARD_AN12 _BOARD_AN13 ' +
+	      '_BOARD_AN14 _BOARD_AN15 _MSK_TIMER_OC _MSK_TIMER_IC _MSK_TIMER_TCK _IOPORT_PA ' +
+	      '_IOPORT_PB _IOPORT_PC _IOPORT_PD _IOPORT_PE _IOPORT_PF _IOPORT_PG _RPOBASE ' +
+	      '_RPIBASE _TIMER_OC1 _TIMER_OC2 _TIMER_OC3 _TIMER_OC4 _TIMER_OC5 _TIMER_IC1 ' +
+	      '_TIMER_IC2 _TIMER_IC3 _TIMER_IC4 _TIMER_IC5 _TIMER_TCK1 _TIMER_TCK2 _TIMER_TCK3 ' +
+	      '_TIMER_TCK4 _TIMER_TCK5 M_E M_LOG2E M_LOG10E M_LN2 M_LN10 M_PI M_PI_2 M_PI_4 ' +
+	      'M_1_PI M_2_PI M_2_SQRTPI M_SQRT2 M_SQRT1_2';
+
+	  var mp_literal2 = 'NUM_DIGITAL_PINS NUM_ANALOG_PINS NUM_OC_PINS NUM_IC_PINS NUM_TCK_PINS ' +
+	      'NUM_INT_PINS NUM_SERIAL_PORTS NUM_SPI_PORTS NUM_I2C_PORTS NUM_DSPI_PORTS ' +
+	      'NUM_DTWI_PORTS NUM_LED NUM_BTN NUM_SWT NUM_SERVO NUM_ANALOG_PINS_EXTENDED ' +
+	      'PIN_LED1 PIN_LED2 PIN_LED3 PIN_LED4 PIN_BTN1 PIN_BTN2 PIN_BTN3 PIN_OC1 PIN_OC2 ' +
+	      'PIN_OC3 PIN_OC4 PIN_OC5 PIN_IC1 PIN_IC2 PIN_IC3 PIN_IC4 PIN_IC5 PIN_TCK1 ' +
+	      'PIN_TCK2 PIN_TCK3 PIN_TCK4 PIN_TCK5 PIN_INT0 PIN_INT1 PIN_INT2 PIN_INT3 PIN_INT4 ' +
+	      'SS MOSI MISO SCK PIN_DSPI0_SS PIN_DSPI1_SS PIN_DSPI2_SS PIN_DSPI3_SS A0 A1 A2 A3 ' +
+	      'A4 A5 A6 A7 A8 A9 A10 A11 A12 A13 A14 A15 PIN_CN0 PIN_CN1 PIN_CN2 PIN_CN3 ' +
+	      'PIN_CN4 PIN_CN5 PIN_CN6 PIN_CN7 PIN_CN8 PIN_CN9 PIN_CN10 PIN_CN11 PIN_CN12 ' +
+	      'PIN_CN13 PIN_CN14 PIN_CN15 PIN_CN16 PIN_CN17 PIN_CN18 PIN_CN19 PIN_CN20 PIN_CN21 ' +
+	      'port_to_tris_PGM digital_pin_to_port_PGM digital_pin_to_bit_mask_PGM ' +
+	      'digital_pin_to_timer_PGM OPT_BOARD_INIT OPT_BOARD_DIGITAL_IO ' +
+	      'OPT_BOARD_ANALOG_READ OPT_BOARD_ANALOG_WRITE _SER0_BASE _SER0_IRQ _SER0_VECTOR ' +
+	      '_SER0_IPL_ISR _SER0_IPL _SER0_SPL _SER1_BASE _SER1_IRQ _SER1_VECTOR ' +
+	      '_SER1_IPL_ISR _SER1_IPL _SER1_SPL _SER2_BASE _SER2_IRQ _SER2_VECTOR ' +
+	      '_SER2_IPL_ISR _SER2_IPL _SER2_SPL _SER3_BASE _SER3_IRQ _SER3_VECTOR ' +
+	      '_SER3_IPL_ISR _SER3_IPL _SER3_SPL _SPI_BASE _SPI_ERR_IRQ _SPI_RX_IRQ _SPI_TX_IRQ ' +
+	      '_SPI_VECTOR _SPI_IPL_ISR _SPI_IPL _SPI_SPL _DSPI0_BASE _DSPI0_ERR_IRQ ' +
+	      '_DSPI0_RX_IRQ _DSPI0_TX_IRQ _DSPI0_VECTOR _DSPI0_IPL_ISR _DSPI0_IPL _DSPI0_SPL ' +
+	      '_DSPI1_BASE _DSPI1_ERR_IRQ _DSPI1_RX_IRQ _DSPI1_TX_IRQ _DSPI1_VECTOR ' +
+	      '_DSPI1_IPL_ISR _DSPI1_IPL _DSPI1_SPL _SPI3_ERR_IRQ _DSPI2_BASE _DSPI2_ERR_IRQ ' +
+	      '_DSPI2_RX_IRQ _DSPI2_TX_IRQ _DSPI2_VECTOR _DSPI2_IPL_ISR _DSPI2_IPL _DSPI2_SPL ' +
+	      '_DSPI3_BASE _DSPI3_ERR_IRQ _DSPI3_RX_IRQ _DSPI3_TX_IRQ _DSPI3_VECTOR ' +
+	      '_DSPI3_IPL_ISR _DSPI3_IPL _DSPI3_SPL _TWI_BASE _TWI_BUS_IRQ _TWI_SLV_IRQ ' +
+	      '_TWI_MST_IRQ _TWI_VECTOR _TWI_IPL_ISR _TWI_IPL _TWI_SPL _DTWI0_BASE ' +
+	      '_DTWI0_BUS_IRQ _DTWI0_SLV_IRQ _DTWI0_MST_IRQ _DTWI0_VECTOR _DTWI0_IPL_ISR ' +
+	      '_DTWI0_IPL _DTWI0_SPL _DTWI1_BASE _DTWI1_BUS_IRQ _DTWI1_SLV_IRQ _DTWI1_MST_IRQ ' +
+	      '_DTWI1_VECTOR _DTWI1_IPL_ISR _DTWI1_IPL _DTWI1_SPL _DTWI2_BASE _DTWI2_BUS_IRQ ' +
+	      '_DTWI2_SLV_IRQ _DTWI2_MST_IRQ _DTWI2_VECTOR _DTWI2_IPL_ISR _DTWI2_IPL _DTWI2_SPL ' +
+	      '_DTWI3_BASE _DTWI3_BUS_IRQ _DTWI3_SLV_IRQ _DTWI3_MST_IRQ _DTWI3_VECTOR ' +
+	      '_DTWI3_IPL_ISR _DTWI3_IPL _DTWI3_SPL _DTWI4_BASE _DTWI4_BUS_IRQ _DTWI4_SLV_IRQ ' +
+	      '_DTWI4_MST_IRQ _DTWI4_VECTOR _DTWI4_IPL_ISR _DTWI4_IPL _DTWI4_SPL';
+
+	  var mp_keyword1 = 'and and_eq asm bitand bitor bool boolean break byte case char class clock_t ' +
+	      'compl const const_cast continue default delete div_t do double else enum ' +
+	      'explicit extern false FILE float for fpos_t goto if int8_t int16_t int32_t ' +
+	      'int64_t int intptr_t isrFunc ldiv_t long mutable namespace new not not_eq null ' +
+	      '_off_t operator or or_eq private protected ptrdiff_t public register ' +
+	      'reinterpret_cast return short signed size_t static static_cast String struct ' +
+	      'switch taskFunc template this time_t true typedef typename uint8_t uint16_t ' +
+	      'uint32_t uint64_t union unsigned using virtual void volatile wchar_t while word ' +
+	      'xor xor_eq';
+
+	  var mp_keyword2 = 'abs acos acosh asin asinh atan atanh atan2 cbrt ceil constrain copysign cos cosh ' +
+	      'degrees erf erfc exp exp2 expm1 fabs floor fma fmod fpclassify frexp hypot ilogb ' +
+	      'isfinite isinf isnan isnormal j0 j1 jn ldexp lgamma lrint llrint log log2 log10 ' +
+	      'log1p logb llround lround map max min modf nan nearbyint nextafter pow radians ' +
+	      'random randomSeed remainder remquo rint round scalbln scalbn sin signbit sinh ' +
+	      'sqrt tan tanh tgamma trunc y0 y1 yn setup loop analogReference analogRead ' +
+	      'analogWrite attachInterrupt bit bitClear bitSet bitRead bitWrite ' +
+	      'clockCyclesPerMicrosecond clockCyclesToMicroseconds detachInterrupt delay ' +
+	      'delayMicroseconds digitalWrite digitalRead highByte init interrupts lowByte ' +
+	      'micros microsecondsToClockCycles millis noInterrupts noTone pinMode pulseIn ' +
+	      'shiftIn shiftOut tone enableInterrupts disableInterrupts restoreInterrupts ' +
+	      'getIntFlag clearIntFlag setIntEnable clearIntEnable restoreIntEnable ' +
+	      'setIntPriority getIntPriority setIntVector getIntVector clearIntVector ' +
+	      'getPeripheralClock readCoreTimer writeCoreTimer executeSoftReset ' +
+	      'attachCoreTimerService detachCoreTimerService callCoreTimerServiceNow createTask ' +
+	      'destroyTask getTaskId tartTaskAt getTaskNextExec setTaskState getTaskState ' +
+	      'etTaskPeriod getTaskPeriod setTaskVar getTaskVar _initTaskManager _scheduleTask ' +
+	      '_BV _PPS_OUT _PPS_IN digitalPinToPort digitalPinToBitMask digitalPinToTimerOC ' +
+	      'digitalPinToTimerIC digitalPinToTimerTCK digitalPinToTimer digitalPinToCN ' +
+	      'portRegisters isPpsPin ppsInputSelect ppsOutputSelect ppsSetFromPin ' +
+	      'ppsSetFromFunc ppsInputFromFunc ppsOutputFromFunc ppsFuncIsInput ppsFuncIsOutput ' +
+	      'ppsOutputRegister ppsInputRegister timerOCtoDigitalPin timerOCtoOutputSelect ' +
+	      'externalIntToDigitalPin externalIntToInputSelect portModeRegister ' +
+	      'portInputRegister portOutputRegister digitalPinToAnalog analogInPinToChannel ' +
+	      'begin end find findUntil flush parseFloat parseInt peek print println read ' +
+	      'readBytes readBytesUntil readString readStringUntil available serialEvent ' +
+	      'setTimeout press release releaseAll accept click move isPressed';
+ 
+	  var mp_keyword3 = 'Serial Serial0 Serial1 Serial2 Serial3 Keyboard Mouse';
+	  
+	  this.regexList = [
+	    { regex: SyntaxHighlighter.regexLib.singleLineCComments,  css: 'comments' }, // one line comments
+	    { regex: SyntaxHighlighter.regexLib.multiLineCComments,   css: 'comments' }, // multiline comments
+	    { regex: SyntaxHighlighter.regexLib.doubleQuotedString,   css: 'string' },	 // strings
+	    { regex: SyntaxHighlighter.regexLib.singleQuotedString,   css: 'string' },	 // strings
+	    { regex: /^ *#.*/gm,				      css: 'preprocessor' },
+	    { regex: new RegExp(this.getKeywords(mp_literal1), 'gm'), css: 'mp_literal1' }, // MPIDE
+	    { regex: new RegExp(this.getKeywords(mp_literal2), 'gm'), css: 'mp_literal2' }, // MPIDE
+	    { regex: new RegExp(this.getKeywords(mp_keyword1), 'gm'), css: 'mp_keyword1' }, // MPIDE
+	    { regex: new RegExp(this.getKeywords(mp_keyword2), 'gm'), css: 'mp_keyword2' }, // MPIDE
+	    { regex: new RegExp(this.getKeywords(mp_keyword3), 'gm'), css: 'mp_keyword3' }  // MPIDE
+			    ];
+      };
+
+      Brush.prototype	= new SyntaxHighlighter.Highlighter();
+      Brush.aliases	= ['mpide', 'MPIDE', 'Mpide'];
+      
+      SyntaxHighlighter.brushes.Mpide = Brush;
+      SyntaxHighlighter.defaults['toolbar'] = false;
+
+      // CommonJS
+      typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+  })();

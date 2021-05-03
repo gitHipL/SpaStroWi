@@ -1,0 +1,14 @@
+Circuit: * C:\Users\leonh\OneDrive - HTBLuVA Salzburg\Desktop\HWE\SpaStroWi\LTSPICE Datein SpaStroWi\AD736_testing_bi_supply.asc
+
+WARNING: Less than two connections to node OUT.  This node is used by R:U1:10.
+u1:1:vib: Missing value, assumed 0V @ DC
+u1:v4: Missing value, assumed 0V @ DC
+u1:3:vib: Missing value, assumed 0V @ DC
+u1:v5: Missing value, assumed 0V @ DC
+Direct Newton iteration for .op point succeeded.
+Heightened Def Con from 0.0124858 to 0.0124858
+Heightened Def Con from 0.012777 to 0.0127771
+Heightened Def Con from 0.0127874 to 0.0127874
+Heightened Def Con from 0.0129308 to 0.0129308
+Heightened Def Con from 0.0129752 to 0.0129752
+Heightened Def Con from 0.0130087 to 0.0130087

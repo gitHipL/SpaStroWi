@@ -1,0 +1,23 @@
+Circuit: * C:\Users\leonh\OneDrive - HTBLuVA Salzburg\Desktop\HWE\SpaStroWi\LTSPICE Datein SpaStroWi\Draft1.asc
+
+WARNING: Less than two connections to node MOD_PRODUCT.  This node is used by B1.
+WARNING: Less than two connections to node OUT.  This node is used by B2.
+.OP point found by inspection.
+
+Date: Thu Jan 14 08:42:49 2021
+Total elapsed time: 2.023 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 400034
+traniter = 400034
+tranpoints = 200018
+accept = 200018
+rejected = 0
+matrix size = 8
+fillins = 0
+solver = Normal
+Matrix Compiler1: 174 bytes object code size  0.1/0.0/[0.0]
+Matrix Compiler2: 372 bytes object code size  0.1/0.1/[0.0]
+

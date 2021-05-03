@@ -1,0 +1,8 @@
+wenn EIN = 1:
+Outputs nach Inputs
+	Wenn keine Inputs:
+	EOUT = 1;
+
+Wenn EIN = 0:
+OUTputs = 0;
+

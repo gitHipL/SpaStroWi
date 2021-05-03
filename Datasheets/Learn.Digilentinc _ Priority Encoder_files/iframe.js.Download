@@ -1,0 +1,13 @@
+window.addEventListener('message', respondSize, false);
+
+function respondSize(event) {
+	var height = window.document.body.scrollHeight.toString();
+	var link = window.document.getElementsByTagName("a");
+	for(var i = 0; i < link.length; i++) {
+		link[i].target = "_parent";
+	}
+	window.document.body.style.backgroundColor="transparent";
+	if(event.data == "sizing?") {
+		event.source.postMessage(height.toString(), event.origin);
+	}
+}

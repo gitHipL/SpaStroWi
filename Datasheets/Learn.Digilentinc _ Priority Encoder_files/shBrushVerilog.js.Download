@@ -1,0 +1,51 @@
+/**
+ * SyntaxHighlighter
+ * http://alexgorbatchev.com/SyntaxHighlighter
+ *
+ * SyntaxHighlighter is donationware. If you are using it, please donate.
+ * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
+ *
+ * @version
+ * 3.0.83 (July 02 2010)
+ * 
+ * @copyright
+ * Copyright (C) 2004-2010 Alex Gorbatchev.
+ *
+ * @license
+ * Dual licensed under the MIT and GPL licenses.
+ */
+;(function()
+  {
+      // CommonJS
+      typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
+      
+      function Brush()
+      {
+	  // Copyright 2013, Digilent Inc.
+	  // Author: Tinghui Wang
+	  
+	  var Verilog_Command = '`timescale';
+	  var Verilog_Keyword = 'module endmodule input output inout wire wand wor reg ' +
+				'integer time real realtime event task begin end endtask ' +
+				'function endfunction localparam assign initial always ' + 
+       				'defparam if else case casex casez default endcase ' +
+				'forever repeat while for wait deassign specify endspecify ' +
+				'generate genvar endgenerate posedge negedge ';
+
+	  this.regexList = [
+	    { regex: SyntaxHighlighter.regexLib.singleLineCComments,  css: 'comments' }, // one line comments
+	    { regex: SyntaxHighlighter.regexLib.multiLineCComments,   css: 'comments' }, // multiline comments
+	    { regex: new RegExp(this.getKeywords(Verilog_Keyword), 'gm'),    css: 'vkeyword' },	//Verilog Keyword
+	    { regex: new RegExp(this.getKeywords(Verilog_Command), 'gm'), css: 'vcommand' } 	//Verilog Command
+	    ];
+      };
+
+      Brush.prototype	= new SyntaxHighlighter.Highlighter();
+      Brush.aliases	= ['verilog', 'Verilog', 'VERILOG'];
+      
+      SyntaxHighlighter.brushes.Verilog = Brush;
+      SyntaxHighlighter.defaults['toolbar'] = false;
+
+      // CommonJS
+      typeof(exports) != 'undefined' ? exports.Brush = Brush : null;
+  })();
